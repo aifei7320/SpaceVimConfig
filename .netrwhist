@@ -1,0 +1,3 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/hero/.cache/vimfiles/repos/github.com/ludovicchabant/vim-gutentags/autoload/gutentags'
