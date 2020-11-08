@@ -19,7 +19,8 @@ func! myspacevim#before() abort
   let g:ale_cpp_gcc_options = '-Wall -O3 -std=c++11'
   let g:ale_c_cppcheck_options = ''
   let g:ale_cpp_cppcheck_options = ''
-  let g:ale_c_clangformat_options = '--style=Google'
+  let g:ale_c_clangformat_options = '--style=google --sort-includes=on'
+  let g:ale_cpp_clangtidy_options = '--fix-errors'
 
 
   let g:ale_linters = {
@@ -31,6 +32,7 @@ func! myspacevim#before() abort
         \   'json': ['jsonlint'],
         \   'cuda': ['nvcc'],
         \   'python': ['flake8'],
+        \   'markdown': ['remark_lint'],
         \}
 
   let g:ale_fixers = {
@@ -87,6 +89,13 @@ func! myspacevim#before() abort
   "python高亮
   let python_highlight_all=1
 
+  let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+  let g:DoxygenToolkit_paramTag_pre="@Param "
+  let g:DoxygenToolkit_returnTag="@Returns   "
+  let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+  let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+  let g:DoxygenToolkit_authorName="XiaoFeng Zheng"
+  let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
   nnoremap <F6> :call myspacevim#runmake()<cr>
 endfunction
 
@@ -100,6 +109,7 @@ endfunc
 func! myspacevim#after() abort
   " Define mappings
 
+  let updatetime=100
 
   let g:ycm_add_preview_to_completeopt = 0
   let g:ycm_show_diagnostics_ui = 0
@@ -117,6 +127,12 @@ func! myspacevim#after() abort
         \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
         \ 'cs,lua,javascript': ['re!\w{2}'],
         \ }
+  " Your vimrc
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
 " for markdown
 " " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
@@ -200,7 +216,6 @@ let g:mkdp_port = ''
 " preview page title
 " ${name} will be replace with the file name
 let g:mkdp_page_title = '「${name}」'
-
 
   function! s:CustomizeYcmQuickFixWindow()
   " Move the window to the top of the screen.

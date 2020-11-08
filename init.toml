@@ -60,6 +60,8 @@
     snippet_engine = "ultisnips"
     filemanager = "nerdtree"
 
+    guifont = "SourceCodePro Nerd Font Mono:h24"
+
 # SpaceVim 模块设置，主要包括启用/禁用模块
 # 启用youcompleteme
 
@@ -79,7 +81,7 @@
     name = "shell"
     default_position = "bottom"
     default_height = 15
-    enable = true
+    enable = false
 
 #[[layers]]
 #name = "cscope"
@@ -115,6 +117,9 @@
     name = "lang#c"
 
 [[layers]]
+    name = "lang#markdown"
+
+[[layers]]
     name = "git"
 
 [[layers]]
@@ -143,8 +148,8 @@
 #    rust = ["rustup", "run", "nightly", "rls"]
 #https://spacevim.org/cn/layers/language-server-protocol/
 
-[[layers]]
-    name = "format"
+# [[layers]]
+    # name = "format"
 
 [[layers]]
     name = "VersionControl"
@@ -233,4 +238,24 @@
 
 [[custom_plugins]]
   name = "vim-airline/vim-airline-themes"
+  merged = 0
+
+[[custom_plugins]]
+  name = "easymotion/vim-easymotion"
+  merged = 0
+
+[[custom_plugins]]
+  name = "airblade/vim-gitgutter"
+  merged = 0
+
+[[custom_plugins]]
+  name = "wsdjeg/mdctags.rs"
+  merged = 0
+
+[[custom_plugins]]
+  name = "SirVer/ultisnips"
+  merged = 0
+
+[[custom_plugins]]
+  name = "vim-scripts/DoxygenToolkit.vim"
   merged = 0
